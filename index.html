@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Table Output & Processing</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 300px; margin-bottom: 40px; }
+    th, td { border: 1px solid #999; padding: 8px; text-align: center; }
+    h2 { margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+  <h2>Table 1</h2>
+  <table id="table1">
+    <thead>
+      <tr><th>Index #</th><th>Value</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Table 2 (Processed Data)</h2>
+  <table id="table2">
+    <thead>
+      <tr><th>Category</th><th>Value</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const table1Data = {
+      A1: 41, A2: 18, A3: 21, A4: 63, A5: 2,
+      A6: 53, A7: 5, A8: 57, A9: 60, A10: 93,
+      A11: 28, A12: 3, A13: 90, A14: 39, A15: 80,
+      A16: 88, A17: 49, A18: 60, A19: 26, A20: 28
+    };
+
+    
+    const tbody1 = document.querySelector('#table1 tbody');
+    for (const [index, value] of Object.entries(table1Data)) {
+      const row = `<tr><td>${index}</td><td>${value}</td></tr>`;
+      tbody1.innerHTML += row;
+    }
+
+    
+    const A5 = table1Data["A5"];
+    const A7 = table1Data["A7"];
+    const A12 = table1Data["A12"];
+    const A13 = table1Data["A13"];
+    const A15 = table1Data["A15"];
+    const A20 = table1Data["A20"];
+
+    const table2Data = [
+      { category: 'Alpha', value: A5 + A20 },
+      { category: 'Beta', value: (A15 / A7).toFixed(2) },
+      { category: 'Charlie', value: A13 * A12 }
+    ];
+
+    
+    const tbody2 = document.querySelector('#table2 tbody');
+    for (const row of table2Data) {
+      tbody2.innerHTML += `<tr><td>${row.category}</td><td>${row.value}</td></tr>`;
+    }
+  </script>
+
+</body>
+</html>
